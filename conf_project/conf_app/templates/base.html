@@ -1,0 +1,34 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <nav class="main-nav">
+        <a href="/" class="logoText"> CONFLIX </a>
+        <a href="/" class="nav-link"> Accueil </a>
+        <a href="/rockstars" class="nav-link">Intervenants</a>
+        <a href="/themes" class="nav-link">Thèmes</a>
+        <a href="/tags" class="nav-link">Tags</a>
+        <a href="/all" class="nav-link">Conférences</a>
+        <a href="/aboutus" class="nav-link">About Us</a>
+      </nav>
+    </header>
+    <section class="main-container">
+      {% block title %}
+      {% endblock %}
+      {% block content %}
+      {% endblock %}
+    </section>
+  </div>
+  <script src="{% static 'main.js' %}"></script>
+<footer class="footer">Conférences.fr 2024</footer>
+</body>
+</html>

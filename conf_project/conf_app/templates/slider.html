@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <h1 class="page-title">Rock Stars</h1>
+{% endblock %}
+{% block content %}
+<div class="slider">
+    <button class="arrow left-arrow" onclick="slide(-1)">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <div class="slider-content">
+      {% for speaker in speakers %}
+        <div class="slide">
+         <div class="quote">
+            <p>{{ speaker.name }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <button class="arrow right-arrow" onclick="slide(1)">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
+{% endblock %}

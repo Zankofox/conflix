@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="center-content">
+        <h1 data-text="{{ speaker }}">{{ speaker }}</h1>
+    </div>
+    <h2> </h2>
+    <div class="box">
+        {% for conf in confs %}
+            <div class="video-item2">
+                <a href="/conf/{{ conf.id }}">
+                    <div class="content">
+                        <img src="{{ conf.tnLink }}" alt="{{ conf.name }}">
+                        <div class="text">
+                            {{ conf.name }}
+                            <div class="additional-text2">
+                                {% for tag in conf.split_tags %}
+                                    <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

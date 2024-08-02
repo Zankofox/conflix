@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <div class="center-content center-content-extended">
+        <h1 data-text="{{ conf.name }}">{{ conf.name }}</h1>
+        <h2 data-text="{{ conf.speaker.name }}">
+            <a href="/speaker/{{ conf.speaker.id }}">{{ conf.speaker.name }}</a>
+        </h2>
+        <div class="date-tags-wrapper">
+            <p class="publish-date">
+                {{ conf.publishDate|date:"d/m/Y" }}
+            </p>
+            <p class="tags">
+                {% for tag in conf.split_tags %}
+                    <a href="/tag/{{ tag }}">{{ tag }}</a>{% if not loop.last %} {% endif %}
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .video-container {
+    position: relative;
+    height: 80%;
+    padding: 0 0 0 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: -20;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.control-button {
+    flex: 1;
+    padding: 15px;
+    font-size: 18px;
+    font-family: 'Roboto', 'Lato', sans-serif;
+    font-weight: bold;
+    color: #fff;
+    background:
+    linear-gradient(to bottom, transparent, #444444), /* Lighter gradient top to bottom */
+    linear-gradient(to right, #444444, #607080, #384850, #444444); /* Lighter gradient left to right */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+}
+
+.control-button:hover {
+    background:
+    linear-gradient(to bottom, transparent, #666666), /* Even lighter gradient top to bottom */
+    linear-gradient(to right, #666666, #8090a0, #566070, #666666); /* Even lighter gradient left to right */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.control-button:active {
+    background:
+    linear-gradient(to bottom, transparent, #555555), /* Slightly lighter than original gradient top to bottom */
+    linear-gradient(to right, #555555, #708090, #495260, #555555); /* Slightly lighter than original gradient left to right */
+    transform: translateY(0); /* Remove lift effect */
+}
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <iframe id="youtubeVideo" src="{{ conf.youtubeEmbedLink }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="control-buttons">
+        <button class="control-button" onclick="skipToTime('{{ conf.startTimeCode }}')">Début de la conférence {{ conf.startTimeCode }}</button>
+        {% if conf.questionsTimeCode %}
+        <button class="control-button" onclick="skipToTime('{{ conf.questionsTimeCode }}')">Questions du public {{ conf.questionsTimeCode }}</button>
+        {% endif %}
+    </div>
+
+    <script>
+        function skipToTime(timeCode) {
+            var timeParts = timeCode.split(':');
+            var seconds = (+timeParts[0]) * 60 * 60 + (+timeParts[1]) * 60 + (+timeParts[2]);
+            var videoSrc = document.getElementById('youtubeVideo').src;
+            if (videoSrc.includes("?")) {
+                videoSrc = videoSrc.split('?')[0];
+            }
+            document.getElementById('youtubeVideo').src = videoSrc + "?start=" + seconds + "&autoplay=1";
+        }
+    </script>
+</body>
+{% endblock %}

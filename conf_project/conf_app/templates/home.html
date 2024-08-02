@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}
+    <div class="center-content center-content-extended">
+        <h1 data-text="Bienvenue"> Bienvenue </h1>
+        <h3 data-text="{{ total_confs }} conférences disponibles">
+            <a href="/all">{{ total_confs }} conférences disponibles </a>
+        </h3>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>Nouveautés</h1>
+    <div class="box">
+        {% for conf_new in confs_new %}
+            <div class="video-item">
+                <a href="/conf/{{ conf_new.id }}">
+                    <div class="content">
+                        <img src="{{ conf_new.tnLink }}" alt="{{ conf_new.name }}">
+                        <div class="text">
+                            {{ conf_new.name }}
+                            <div class="additional-text">{{ conf_new.speaker.name }}</div>
+                            <div class="additional-text2">
+                                {% for tag in conf_new.tag_list %}
+                                    <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <h1>Bangers</h1>
+    <div class="box">
+        {% for conf_banger in confs_banger %}
+            <div class="video-item">
+                <a href="/conf/{{ conf_banger.id }}">
+                    <div class="content">
+                        <img src="{{ conf_banger.tnLink }}" alt="{{ conf_banger.name }}">
+                        <div class="text">
+                            {{ conf_banger.name }}
+                            <div class="additional-text">{{ conf_banger.speaker.name }}</div>
+                            <div class="additional-text2">
+                                {% for tag in conf_banger.tag_list %}
+                                    <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="center-content">
+        <h1 data-text="{{ theme }}">{{ theme }}</h1>
+        <img src="/static/images/categories/{{ theme }}.png" class="logo">
+    </div>
+   {% for speaker in speakers %}
+        <a href="/speaker/{{ speaker.id }}" class="speaker-link">
+            <h2>{{ speaker.name }}</h2>
+        </a>
+        <div class="box">
+            {% for conference in conferences %}
+                {% if conference.speaker == speaker %}
+                    <div class="video-item2">
+                        <a href="/conf/{{ conference.id }}">
+                            <div class="content">
+                                <img src="{{ conference.tnLink }}" alt="{{ conference.name }}">
+                                <div class="text">
+                                    {{ conference.name }}
+                                    <div class="additional-text2">
+                                        {% for tag in conference.split_tags %}
+                                            <span class="tag">{{ tag }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+   {% endfor %}
+{% endblock %}

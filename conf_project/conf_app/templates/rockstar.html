@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <div class="center-content">
+        <h1 data-text="Rock Stars">Rock Stars</h1>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="gallery">
+        {% for speaker in speakers %}
+            {% if speaker.rockStar %}
+            <div class="gallery-item-container">
+                <div class="gallery-item">
+                    <a href="/speaker/{{ speaker.id }}">
+                        <img src="{% static 'images/rockstars/final/' %}{{ speaker.id }}.png" alt="{{ speaker.name }}">
+                    </a>
+                    <div class="description">
+                        <p> "{{ speaker.random_quote }}" </p>
+                        <div class="cat-images">
+                            {% if speaker.cat1 %}
+                            <a href="/theme/{{ speaker.cat1 }}">
+                                <div class="cat-image-left">
+                                    <img src="{% static 'images/categories/' %}{{ speaker.cat1 }}.png" class="cat-image" alt="Category 1">
+                                    <span>{{ speaker.cat1 }}</span>
+                                </div>
+                            </a>
+                            {% endif %}
+                            {% if speaker.cat2 %}
+                            <a href="/theme/{{ speaker.cat2 }}">
+                                <div class="cat-image-right">
+                                    <img src="{% static 'images/categories/' %}{{ speaker.cat2 }}.png" class="cat-image" alt="Category 2">
+                                    <span>{{ speaker.cat2 }}</span>
+                                </div>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'main.js' %}"></script>
+{% endblock %}

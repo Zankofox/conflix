@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <div class="center-content">
+        <h1 data-text="Thèmes">Thèmes</h1>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="box6">
+        {% for theme, count in theme_counts %}
+            <div class="theme-container">
+                <a href="/theme/{{ theme }}">
+                    <div class="image-wrapper">
+                        <img src="/static/images/categories/{{ theme }}.png" alt="{{ theme }}">
+                    </div>
+                    <h1 class="theme-text">
+                        {{ theme }}
+                        {% if count %}
+                            ({{ count }})
+                        {% else %}
+                            (0)
+                        {% endif %}
+                    </h1>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

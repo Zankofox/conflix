@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="center-content">
+        <h1 data-text="Toutes les conférences">Toutes les conférences</h1>
+    </div>
+    <!-- Dropdown Menu for Filtering by Speaker -->
+    <label for="speaker-filter"></label>
+    <select id="speaker-filter" onchange="updateDropdowns()">
+        <option value="">Tous les intervenants</option>
+        {% for speaker in speakers %}
+            <option value="{{ speaker.id }}" {% if speaker.id|stringformat:"s" == selected_speaker %}selected{% endif %}>{{ speaker.name }}</option>
+        {% endfor %}
+    </select>
+
+    <!-- Dropdown Menu for Filtering by Category -->
+    <label for="category-filter"></label>
+    <select id="category-filter" onchange="updateDropdowns()">
+        <option value="">Tous les thèmes</option>
+        {% for category in categories %}
+            <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+        {% endfor %}
+    </select>
+
+    <!-- Dropdown Menu for Filtering by Tag -->
+    <label for="tag-filter"></label>
+    <select id="tag-filter" onchange="filter()">
+        <option value="">Tous les tags</option>
+        {% for tag in tags %}
+            <option value="{{ tag }}" {% if tag == selected_tag %}selected{% endif %}>{{ tag }}</option>
+        {% endfor %}
+    </select>
+
+    <!-- Reset Filters Button -->
+    <button id="reset-filters" onclick="resetFilters()">Reset Filters</button>
+
+    <div class="box">
+        {% for conf in confs %}
+            <div class="video-item"
+                 data-speaker="{{ conf.speaker.id }}"
+                 data-tags="{{ conf.tags }}"
+                 data-cat1="{{ conf.cat1 }}"
+                 data-cat2="{{ conf.cat2 }}">
+                <a href="/conf/{{ conf.id }}">
+                    <div class="content">
+                        <img src="{{ conf.tnLink }}" alt="{{ conf.name }}">
+                        <div class="text">
+                            {{ conf.name }}
+                            <div class="additional-text">{{ conf.speaker.name }}</div>
+                            <div class="additional-text2">
+                                {% for tag in conf.tag_list %}
+                                    <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'main.js' %}"></script>
+{% endblock %}

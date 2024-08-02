@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <div class="center-content">
+        <h1 data-text="Tags">Tags</h1>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="box">
+        {% for tag, count in tags %}
+            <li>
+                <a href="/tag/{{ tag }}" style="color: white; font-family: 'Arial', sans-serif; font-size: 16px; font-weight: bold;">
+                    {{ tag }} ({{ count }})
+                </a>
+            </li>
+        {% endfor %}
+    </div>
+{% endblock %}
