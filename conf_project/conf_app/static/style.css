@@ -183,6 +183,7 @@ img {
     padding-top: -30px; /* Removes padding at the top */
 }
 /* ALL VIDEOS */
+
 .video-item {
   position: relative;
   margin-bottom: -65px;
@@ -212,26 +213,25 @@ img {
   text-align: center;
   color: var(--text-color);
   font-size: 1rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Quicksand';
   font-weight: 600;
   letter-spacing: 0.5px;
   padding: 5px 10px 0px 10px;
   border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
   margin-top: 0px;
   position: relative;
 }
 
 .video-item .content .text .additional-text {
   visibility: hidden;
-  text-align:center;
+  text-align: center;
   opacity: 1;
-  color: #F2C648 ;
+  color: #fff;
   font-size: 0.9rem;
-  font-style:italic;
   margin-top: 10px;
-  margin-left: 10px;
-  transition: visibility 0s, opacity 0.3s ease-in-out;
+  margin-left: 0px;
+  transition: visibility 0s, opacity 0.8s ease-in-out;
+  background: linear-gradient(to right, #141414, #16222a, #3a6073, #16222a, #141414);
 }
 
 .video-item .content:hover .text .additional-text {
@@ -240,24 +240,24 @@ img {
 }
 
 .video-item .content:hover .text {
-  background-color: var(--hover-dark);
-  box-shadow: var(--hover-shadow);
+  background-color: rgba(0, 0, 0, 1); /* Fully opaque black background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1); /* Fully opaque black shadow */
 }
 
 .video-item .content .text .additional-text2 {
   visibility: hidden;
   text-align: center;
   margin-left: 10px;
-  opacity: 0;
-  color: #ff5733;
-  margin-top: 10px;
-  transition: visibility 0s, opacity 0.3s ease-in-out;
+  opacity: 1;
+  color: #fff;
+  margin-top: 7px;
 }
 
 .video-item .content:hover .additional-text2 {
   visibility: visible;
   opacity: 1;
 }
+
 .tag {
   display: inline-block; /* Ensure each tag is on its own line */
   border: 1px solid #1d2790; /* Border matching the text color */
@@ -268,9 +268,10 @@ img {
   margin-bottom: 3px; /* Space below each tag */
   font-size: 0.55rem; /* Slightly smaller font size */
   font-family: 'Quicksand', sans-serif; /* Matching font */
-  font-weight: 550;
-  font-size: 0.7em; /* Adjusted font size */ /* Italic font style *//* Regular weight for readability */
+  font-weight: 600;
+  font-size: 0.7em; /* Adjusted font size */
 }
+
 
 /* All videos (theme) */
 .video-item2 {
@@ -306,7 +307,7 @@ img {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 600;
   letter-spacing: 0.5px;
-  padding: 5px 10px 0px 10px;
+  padding: 10px 10px 0px 10px;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
   margin-top: 0px;
@@ -323,6 +324,7 @@ img {
   margin-top: 10px;
   margin-left: 10px;
   transition: visibility 0s, opacity 0.3s ease-in-out;
+  background-color: #fff;
 }
 
 .video-item2 .content:hover .text .additional-text {
@@ -331,7 +333,6 @@ img {
 }
 
 .video-item2 .content:hover .text {
-  background-color: var(--hover-dark);
   box-shadow: var(--hover-shadow);
 }
 
@@ -359,7 +360,7 @@ img {
   margin-bottom: 3px; /* Space below each tag */
   font-size: 0.55rem; /* Slightly smaller font size */
   font-family: 'Roboto', 'Lato', sans-serif; /* Modern, compact fonts */
-  font-weight: 550; /* Regular weight for readability */
+  font-weight: 600; /* Regular weight for readability */
 }
 
 #speaker-filter,
@@ -515,6 +516,7 @@ footer {
 .center-content-extended h1 {
     margin: -15 0 0 0;
     font-size: 3.5em;/* Center items horizontally */
+    font-family: 'Quicksand';
 }
 /* Styles for speaker's name */
 .center-content-extended h2 {
